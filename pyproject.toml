@@ -1,0 +1,12 @@
+[project]
+name = "workout-agent"
+version = "0.1.0"
+description = "A multi-agent weight-loss coach, built to learn Google ADK"
+requires-python = ">=3.10"
+dependencies = [
+    "google-adk>=2.8.0",
+    "python-dotenv>=1.0",
+]
+
+[tool.setuptools]
+packages = ["workout_agent"]
