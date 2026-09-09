@@ -1,2 +1,9 @@
 google-adk>=2.8.0
 python-dotenv>=1.0
+
+# Used directly by serve_ui.py. These arrive as google-adk dependencies too,
+# but the web app depends on them in its own right, so they are declared here
+# rather than relied on transitively.
+fastapi>=0.133
+uvicorn>=0.34
+pydantic>=2.12

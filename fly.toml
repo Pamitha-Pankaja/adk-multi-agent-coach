@@ -1,0 +1,30 @@
+# fly.toml app configuration file generated for workout-agent on 2026-09-09T10:21:30+05:30
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'workout-agent'
+primary_region = 'sin'
+
+[build]
+
+[env]
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  # One machine only. Sessions live in memory, so a person's second message
+  # must reach the same machine that handled their first. With two machines
+  # the load balancer splits a conversation and it breaks at random.
+  max_machines_running = 1
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 1024

@@ -58,11 +58,26 @@ belongs **inside** `workout_agent/`, and it is gitignored.
 ## Run it
 
 ```bash
-.venv/bin/adk web .                  # dev UI at localhost:8000  ← start here
+.venv/bin/python serve_ui.py         # the chat UI at localhost:8080  ← nicest to use
+.venv/bin/adk web .                  # ADK's debugger at localhost:8000
 .venv/bin/python start_web.py        # ...then this, for a greeting already waiting
 .venv/bin/python run_cli.py          # raw event stream in the terminal
 .venv/bin/python test_tools.py       # the deterministic tests
 ```
+
+### The three front ends
+
+`serve_ui.py` is a real chat UI ([`ui/index.html`](ui/index.html)) with no dependency on
+the dev server — it owns the `Runner` itself and streams every ADK event to the browser as
+a server-sent event, so a side rail lights each agent up as it runs and ticks off the five
+state keys as they are written. Workflow agents are marked *no model* there, because the
+difference between an agent that thinks and one that just sequences is the thing worth
+seeing.
+
+`adk web` is ADK's own debugger: Events, Traces and State tabs. Better for inspecting a
+single event; worse for actually talking to the coach.
+
+`run_cli.py` is the same event stream as plain text in a terminal.
 
 The agent opens the conversation and asks **one short question at a time**, adapting each
 one to what you just said — tell it you're a nurse and it asks about your shifts, not from

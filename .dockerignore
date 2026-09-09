@@ -1,0 +1,22 @@
+# Never bake secrets into the image
+.env
+*.env
+!.env.example
+
+.venv/
+__pycache__/
+*.py[cod]
+.git/
+.github/
+.playwright-mcp/
+*.png
+*.db
+
+# Not needed at runtime
+run_cli.py
+start_web.py
+test_tools.py
+README.md
+DEPLOY.md
+Dockerfile
+.dockerignore
